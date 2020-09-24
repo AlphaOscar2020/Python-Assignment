@@ -6,21 +6,30 @@ from selenium.webdriver.support import expected_conditions as EC
 driver = webdriver.Firefox()
 driver.get("https://www.datafolks.com")
 
-contact_us_btn = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[contains(text(),'Contact Us')]")))
+contact_us_btn = WebDriverWait(driver, 50).until(EC.element_to_be_clickable((By.XPATH, '//div[contains(@class, "tn-elem__912597111551726675405")]')))
 contact_us_btn.click()
 
-email_input_field = WebDriverWait(driver, 30).until((EC.visibility_of_element_located((By.XPATH, "//form[@id='form91499566']/div[2]/div[1]/div[2]/input[1]"))))
-email_input_field.send_keys("mail@example.com")
+name_input_field = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.NAME, "Name")))
+name_input_field.send_keys("Adam First")
 
-submit_btn = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//div[contains(@class, "tn-form__submit")]')))
-submit_btn.click()
+email_input_field = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.NAME, "Email")))
+email_input_field.send_keys("adam@example.com")
+
+phone_input_field = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.NAME, "Phone")))
+phone_input_field.send_keys("+18474363041")
+
+country_input_field = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.NAME, "Country")))
+country_input_field.send_keys("USA")
+
+send_btn = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.CLASS_NAME, "t-submit")))
+send_btn.click()
+
+close_icon_btn = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//div[contains(@class, "t-popup__close-wrapper")]')))
+close_icon_btn.click()
 
 home_pg_btn = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//a[@class='tn-atom' and text()='Home']")))
 home_pg_btn.click()
 
-
 driver.quit()
 
-
 #Process finished with exit code 0
-
